@@ -23,11 +23,11 @@ struct Node
     // 染色次数
     int cover;
     // 有效染色长度
-    double sum;
+    double len;
     Node(int _l, int _r) : l(_l), r(_r)
     {
         this->cover = 0;
-        this->sum = 0;
+        this->len = 0;
         this->lson = NULL;
         this->rson = NULL;
     }
@@ -46,11 +46,11 @@ vector<Seg> segments;
 void pushUp(Node *rt)
 {
     if (rt->cover)
-        rt->sum = X[rt->r + 1] - X[rt->l];
+        rt->len = X[rt->r + 1] - X[rt->l];
     else if (rt->l == rt->r)
-        rt->sum = 0;
+        rt->len = 0;
     else
-        rt->sum = rt->lson->sum + rt->rson->sum;
+        rt->len = rt->lson->len + rt->rson->len;
 }
 
 Node *build(int l, int r)
@@ -117,7 +117,7 @@ int main()
             int L = bin(segments[i].l);
             int R = bin(segments[i].r) - 1;
             update(rt, L, R, segments[i].v);
-            ret += rt->sum * (segments[i + 1].h - segments[i].h);
+            ret += rt->len * (segments[i + 1].h - segments[i].h);
         }
         printf("Test case #%d\nTotal explored area: %.2lf\n\n", cas++, ret);
     }
