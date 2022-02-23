@@ -20,7 +20,7 @@ class Solution:
         self.nums1, self.nums2 = nums1, nums2
         self.Len1, self.Len2 = len(nums1), len(nums2)
         self.Len = self.Len1 + self.Len2
-        L, R = 0, self.Len1
+        L, R = 0, self.Len1 + 1
         while L < R:
             M1, M2 = self.partition(L, R)
             if self.check(M1, M2):
