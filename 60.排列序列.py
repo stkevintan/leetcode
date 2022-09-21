@@ -14,15 +14,19 @@ class Solution:
         # return self.nextPermutation(n, k)
         return self.RCantor(n, k)
 
+    # reverse Cantor expansion 
+    # https://oi-wiki.org/math/combinatorics/cantor/
+    # 我们知道长为5的排列[2,5,3,4,1]大于以 1为第一位的任何排列，以 1 为第一位的 5 的排列有 4! 种。
     def RCantor(self, n: int, k: int) -> str:
-        ans: List[int] = []
+        ans: List[str] = []
         p = n
         taken = [False] * (n + 1)
         while p:
             # there are k - 1 sequences less than current sequence
             # we divide it by the factorial of following digit count(n - 1 digits followed after n-th digit)
             # to get how many sequences have a strict smaller digit on that position 
-            count = (k - 1) // factorial(p - 1)
+            count, mod = divmod(k - 1, factorial(p - 1))
+            # or use tree-like array to reduce the time complexity
             c = 0
             for i in range(1, n + 1):
                 if not taken[i]:
@@ -31,8 +35,8 @@ class Solution:
                     ans.append(chr(i + ord('0')))
                     taken[i] = True
                     break
-            # actually, k will become the mod of (k - 1) / factorial(p - 1)
-            k -= count * factorial(p - 1)
+            # k -= count * factorial(p - 1)
+            k = mod + 1 # k - 1 = mod
             p -= 1
         return ''.join(ans)
 

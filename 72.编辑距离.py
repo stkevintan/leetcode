@@ -25,7 +25,7 @@ class Solution:
                 # please note: dp[i][j] does not mean word1/word2 must be i or j length. only mean the steps of word1 to word2
                 dp[i][j] = min(dp[i][j], dp[i][j - 1] + 1)
 
-        return dp[n1][n2]
+        return int(dp[n1][n2])
 
 
 # @lc code=end

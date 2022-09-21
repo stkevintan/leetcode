@@ -52,6 +52,7 @@ class Solution:
             ans += min(right[i], left[i]) - height[i] 
         return ans
 
+    # similar to leetcode 11
     def greedy(self, height: List[int]) -> int:
         n = len(height)
         L, R = 0, n - 1

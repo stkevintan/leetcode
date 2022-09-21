@@ -3,13 +3,16 @@
 #
 # [21] 合并两个有序链表
 #
+from typing import Any
 
+
+class ListNode:
+    def __init__(self, val=0, next: Any = None):
+        self.val = val
+        self.next = next
 # @lc code=start
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
         Root = Cur = ListNode()
